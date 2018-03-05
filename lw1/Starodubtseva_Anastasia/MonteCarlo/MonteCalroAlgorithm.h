@@ -4,18 +4,18 @@
 class CMonteCalroAlgorithm
 {
 public:
-	CMonteCalroAlgorithm(size_t iterationsCount, size_t threadsCount);
+	CMonteCalroAlgorithm(unsigned int iterationsCount, size_t threadsCount);
 	~CMonteCalroAlgorithm() = default;
 	void Run();
-	float GetPiNumber() const;
+	double GetPiNumber() const;
 
 private:
-	float SinglethreadedAlgorithm();
+	double SinglethreadedAlgorithm();
 	bool PointInCircle(CRandomPoint & rndPoint);
 
-	size_t m_pointsInCircle;
-	size_t m_iterationsCount;
+	unsigned int m_pointsInCircle;
+	unsigned int m_iterationsCount;
 	size_t m_threadsCount;
-	float m_pi;
+	double m_pi;
 };
 

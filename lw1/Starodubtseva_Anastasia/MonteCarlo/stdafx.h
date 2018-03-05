@@ -9,14 +9,14 @@
 #include <ctime>
 #include <string>
 
-static const int MIN_ARGUMENTS_COUNT = 2;
-static const int MAX_ARGUMENTS_COUNT = 3;
+static const size_t MIN_ARGUMENTS_COUNT = 2;
+static const size_t MAX_ARGUMENTS_COUNT = 3;
 
-static const int MIN_THREADS_COUNT = 1;
-static const int MAX_THREADS_COUNT = 20;
+static const size_t MIN_THREADS_COUNT = 1;
+static const size_t MAX_THREADS_COUNT = 20;
 
-static const int MIN_ITERATIONS_COUNT = 0;
-static const int MAX_ITERATIONS_COUNT = INT_MAX;
+static const unsigned int MIN_ITERATIONS_COUNT = 0;
+static const unsigned int MAX_ITERATIONS_COUNT = INT_MAX;
 
 static const float MIN_COORDINATE = -1;
 static const float MAX_COORDINATE = 1;
