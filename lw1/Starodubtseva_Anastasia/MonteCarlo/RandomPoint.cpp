@@ -19,5 +19,5 @@ float CRandomPoint::GetY() const
 
 float CRandomPoint::GetRandomNumber() const
 {
-	return (float)(rand()) / RAND_MAX * (MAX_COORDINATE - MIN_COORDINATE) + MIN_COORDINATE;
+	return (float)(rand()) / RAND_MAX * DIAMETER - CIRCLE_RADIUS;
 }
