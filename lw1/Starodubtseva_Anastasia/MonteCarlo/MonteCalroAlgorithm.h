@@ -4,18 +4,20 @@
 class CMonteCalroAlgorithm
 {
 public:
-	CMonteCalroAlgorithm(unsigned int iterationsCount, size_t threadsCount);
+	CMonteCalroAlgorithm(size_t iterationsCount, size_t threadsCount);
 	~CMonteCalroAlgorithm() = default;
 	void Run();
 	double GetPiNumber() const;
 
 private:
 	double SinglethreadedAlgorithm();
-	bool PointInCircle(CRandomPoint & rndPoint);
+	double MultithreadedAlgorithm();
 
-	unsigned int m_pointsInCircle;
-	unsigned int m_iterationsCount;
+	static DWORD WINAPI CalculatePointsInCircle(LPVOID data);
+	static bool IsPointInCircle(CRandomPoint& rndPoint);
+
+	static size_t m_pointsInCircleCount;
+	size_t m_iterationsCount;
 	size_t m_threadsCount;
 	double m_pi;
 };
-
