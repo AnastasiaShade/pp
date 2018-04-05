@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MonteCalroAlgorithm.h"
 #include "ThreadHandler.h"
+#include "ProgressBar.h"
 
 size_t CMonteCalroAlgorithm::m_pointsInCircleCount = 0;
 
@@ -17,11 +18,16 @@ double CMonteCalroAlgorithm::GetPiNumber() const
 
 void CMonteCalroAlgorithm::Run()
 {
+	auto & instance = CProgressBar::GetInstance();
+	instance.SetTotal(m_iterationsCount);
+	HANDLE thread = CreateThread(NULL, 0, instance.PrintProgress, NULL, 0, NULL);
 	m_pi = (m_threadsCount == MIN_THREADS_COUNT) ? SinglethreadedAlgorithm() : MultithreadedAlgorithm();
+	WaitForSingleObject(thread, INFINITE);
 }
 
 double CMonteCalroAlgorithm::SinglethreadedAlgorithm()
 {
+	auto & instance = CProgressBar::GetInstance();
 	std::srand(time(0));
 	for (size_t i = 0; i < m_iterationsCount; ++i)
 	{
@@ -31,6 +37,7 @@ double CMonteCalroAlgorithm::SinglethreadedAlgorithm()
 		{
 			++m_pointsInCircleCount;
 		}
+		instance.Update();
 	}
 
 	return PI_COEFICIENT * (double)m_pointsInCircleCount / m_iterationsCount;
@@ -52,8 +59,11 @@ bool CMonteCalroAlgorithm::IsPointInCircle(CRandomPoint& rndPoint)
 
 DWORD WINAPI CMonteCalroAlgorithm::CalculatePointsInCircle(LPVOID data)
 {
+	auto & instance = CProgressBar::GetInstance();
 	std::srand(time(0));
 	size_t* iterations = static_cast<size_t*>(data);
+
+	auto it = *iterations;
 
 	for (size_t i = 0; i < *iterations; ++i)
 	{
@@ -63,6 +73,7 @@ DWORD WINAPI CMonteCalroAlgorithm::CalculatePointsInCircle(LPVOID data)
 		{
 			InterlockedIncrement(&m_pointsInCircleCount);
 		}
+		instance.Update();
 	}
 
 	return 0;

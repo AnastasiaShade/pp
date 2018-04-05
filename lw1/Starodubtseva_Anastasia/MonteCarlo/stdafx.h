@@ -5,12 +5,12 @@
 #include <stdio.h>
 #include <tchar.h>
 
-#include "ProgressBar.h"
 #include "windows.h"
 #include <ctime>
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 static const size_t MIN_ARGUMENTS_COUNT = 2;
 static const size_t MAX_ARGUMENTS_COUNT = 3;

@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 	monteCarlo.Run();
 	clock_t end = clock();
 
-	std::cout << "Pi number is " << monteCarlo.GetPiNumber() << std::endl;
+	std::cout << std::endl << "Pi number is " << monteCarlo.GetPiNumber() << std::endl;
 	std::cout << "Calculation time = " << (float)(end - start) / CLOCKS_PER_SEC << std::endl;
 
 	return 0;

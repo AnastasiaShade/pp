@@ -1,13 +1,22 @@
 #pragma once
+
 class CProgressBar
 {
 public:
-	CProgressBar(unsigned int total);
-	~CProgressBar() = default;
+	static CProgressBar & GetInstance();
+	void SetTotal(size_t total);
 	void Update();
+	static DWORD WINAPI PrintProgress(LPVOID data);
+		
+protected:
+	CProgressBar();
+	~CProgressBar() = default;
 
 private:
-	unsigned int m_current;
-	unsigned int m_total;
+	CProgressBar(const CProgressBar &) = delete;
+	CProgressBar & operator=(const CProgressBar &) = delete;
+
+	static size_t m_current;
+	static size_t m_total;
 };
 

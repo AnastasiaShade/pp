@@ -1,4 +1,12 @@
 #pragma once
+
+struct ThreadData
+{
+	ThreadData(size_t it)
+		: iterations(it) {};
+	size_t iterations = 0;
+};
+
 class CThreadHandler
 {
 public:
