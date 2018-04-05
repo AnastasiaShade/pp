@@ -63,8 +63,6 @@ DWORD WINAPI CMonteCalroAlgorithm::CalculatePointsInCircle(LPVOID data)
 	std::srand(time(0));
 	size_t* iterations = static_cast<size_t*>(data);
 
-	auto it = *iterations;
-
 	for (size_t i = 0; i < *iterations; ++i)
 	{
 		CRandomPoint rndPoint;
