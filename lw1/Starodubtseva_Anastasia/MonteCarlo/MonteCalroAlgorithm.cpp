@@ -3,6 +3,9 @@
 #include "ThreadHandler.h"
 #include "ProgressBar.h"
 
+static const size_t PI_COEFICIENT = 4;
+static const size_t EXPONENT = 2;
+
 size_t CMonteCalroAlgorithm::m_pointsInCircleCount = 0;
 
 CMonteCalroAlgorithm::CMonteCalroAlgorithm(size_t iterationsCount, size_t threadsCount)
