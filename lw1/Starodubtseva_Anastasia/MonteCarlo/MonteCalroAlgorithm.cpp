@@ -21,7 +21,7 @@ void CMonteCalroAlgorithm::Run()
 	auto & instance = CProgressBar::GetInstance();
 	instance.SetTotal(m_iterationsCount);
 	HANDLE thread = CreateThread(NULL, 0, instance.PrintProgress, NULL, 0, NULL);
-	m_pi = (m_threadsCount == MIN_THREADS_COUNT) ? SinglethreadedAlgorithm() : MultithreadedAlgorithm();
+	m_pi = (m_threadsCount == MIN_THREAD_COUNT) ? SinglethreadedAlgorithm() : MultithreadedAlgorithm();
 	WaitForSingleObject(thread, INFINITE);
 }
 

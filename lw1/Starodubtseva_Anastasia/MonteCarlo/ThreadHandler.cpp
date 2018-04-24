@@ -6,20 +6,20 @@ CThreadHandler::CThreadHandler()
 {
 }
 
-std::vector<HANDLE> CThreadHandler::MakeThreads(size_t threadsCount, size_t totalIterationscount, LPTHREAD_START_ROUTINE function)
+std::vector<HANDLE> CThreadHandler::MakeThreads(size_t threadCount, size_t totalIterationCount, LPTHREAD_START_ROUTINE function)
 {
 	std::vector<HANDLE> threads;
 	std::vector<size_t> dataInThread;
 
-	size_t iterationsInThread = totalIterationscount / threadsCount;
-	size_t additionalIterations = totalIterationscount % threadsCount;
+	size_t iterationsInThread = totalIterationCount / threadCount;
+	size_t additionalIterations = totalIterationCount % threadCount;
 	size_t resultIterations = 0;
 
-	for (size_t i = 0; i < threadsCount; ++i)
+	for (size_t i = 0; i < threadCount; ++i)
 	{
-		resultIterations = (i < additionalIterations) ? iterationsInThread +1 : iterationsInThread;
+		resultIterations = (i < additionalIterations) ? iterationsInThread + 1 : iterationsInThread;
 		
-		if (resultIterations == MIN_ITERATIONS_COUNT)
+		if (resultIterations == MIN_ITERATION_COUNT)
 		{
 			break;
 		}
