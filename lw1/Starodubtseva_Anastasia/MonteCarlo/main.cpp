@@ -3,30 +3,19 @@
 
 static const size_t MIN_ARGUMENT_COUNT = 2;
 static const size_t MAX_ARGUMENT_COUNT = 3;
-static const int MAX_THREAD_COUNT = 64;
 static const std::string HELP_FLAG = "--help";
-
-
-static const std::string ITERATION_COUNT_INFO = "    <iterations count> - value is positive\n";
-static const std::string TREAD_COUNT_INFO = "    <threads count> - optional argument, value in range from " + std::to_string(MIN_THREAD_COUNT) + " to " + std::to_string(MAX_THREAD_COUNT) + "\n";
-
-static const std::string HELP_INFO = "  MonteCarlo.exe --help for help\n";
-static const std::string RUN_INFO = "  MonteCarlo.exe <iterations count> <threads count> to run program\n" + ITERATION_COUNT_INFO + TREAD_COUNT_INFO;
-
-static const std::string HELP_MESSAGE = "Use:\n" + HELP_INFO + RUN_INFO;
-static const std::string ERROR_MESSAGE = "Invalid arguments\n" + HELP_MESSAGE;
 
 int main(int argc, char* argv[])
 {
 	if (argc < MIN_ARGUMENT_COUNT || argc > MAX_ARGUMENT_COUNT)
 	{
-		std::cout << ERROR_MESSAGE;
+		CMessenger::PrintErrorMessage();
 		return 1;
 	}
 
 	if (argc == MIN_ARGUMENT_COUNT && argv[1] == HELP_FLAG)
 	{
-		std::cout << HELP_MESSAGE;
+		CMessenger::PrintHelpMessage();
 		return 0;
 	}
 
@@ -36,7 +25,7 @@ int main(int argc, char* argv[])
 	if (iterationsCount < MIN_ITERATION_COUNT
 		|| threadsCount < MIN_THREAD_COUNT || threadsCount > MAX_THREAD_COUNT)
 	{
-		std::cout << ERROR_MESSAGE;
+		CMessenger::PrintErrorMessage();
 		return 1;
 	}
 

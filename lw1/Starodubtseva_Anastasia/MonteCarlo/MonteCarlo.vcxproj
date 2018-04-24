@@ -145,6 +145,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Messenger.h" />
     <ClInclude Include="MonteCalroAlgorithm.h" />
     <ClInclude Include="ProgressBar.h" />
     <ClInclude Include="RandomPoint.h" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Messenger.cpp" />
     <ClCompile Include="MonteCalroAlgorithm.cpp" />
     <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="RandomPoint.cpp" />
