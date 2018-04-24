@@ -19,12 +19,10 @@ std::vector<HANDLE> CThreadHandler::MakeThreads(size_t threadCount, size_t total
 	{
 		resultIterations = (i < additionalIterations) ? iterationsInThread + 1 : iterationsInThread;
 		
-		if (resultIterations == MIN_ITERATION_COUNT)
+		if (resultIterations != MIN_ITERATION_COUNT)
 		{
-			break;
+			dataInThread.push_back(resultIterations);
 		}
-
-		dataInThread.push_back(resultIterations);
 	}
 
 	for (auto& data : dataInThread)
