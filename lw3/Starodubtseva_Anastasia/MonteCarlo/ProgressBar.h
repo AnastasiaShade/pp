@@ -6,7 +6,6 @@ public:
 	static CProgressBar & GetInstance();
 	void SetTotal(size_t total);
 	void Update();
-	static DWORD WINAPI PrintProgress(LPVOID data);
 		
 protected:
 	CProgressBar();

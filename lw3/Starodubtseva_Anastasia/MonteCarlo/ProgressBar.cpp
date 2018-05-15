@@ -22,15 +22,6 @@ void CProgressBar::SetTotal(size_t total)
 
 void CProgressBar::Update()
 {
-	InterlockedIncrement(&m_current);
-}
-
-DWORD WINAPI CProgressBar::PrintProgress(LPVOID data)
-{
-	while (m_current != m_total)
-	{
-		std::cout << "\r" << std::to_string(m_current) << "/" << std::to_string(m_total);
-	}
+	++m_current;
 	std::cout << "\r" << std::to_string(m_current) << "/" << std::to_string(m_total);
-	return 0;
 }
