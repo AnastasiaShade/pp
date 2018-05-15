@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MonteCalroAlgorithm.h"
-#include "ProgressBar.h"
+#include "omp.h"
 
 static const size_t PI_COEFICIENT = 4;
 static const size_t EXPONENT = 2;
@@ -20,22 +20,19 @@ double CMonteCalroAlgorithm::GetPiNumber() const
 void CMonteCalroAlgorithm::Run()
 {
 	std::srand(time(0));
-	auto & instance = CProgressBar::GetInstance();
-	instance.SetTotal(m_iterationCount);
 
-	for (size_t i = 0; i < m_iterationCount; ++i)
+	#pragma omp parallel for
+	for (int i = 0; i < m_iterationCount; ++i)
 	{
 		CRandomPoint rndPoint;
 
 		if (IsPointInCircle(rndPoint))
 		{
-			++m_pointsInCircleCount;
+			InterlockedIncrement(&m_pointsInCircleCount);
 		}
-		instance.Update();
 	}
 
 	m_pi = PI_COEFICIENT * (double)m_pointsInCircleCount / m_iterationCount;
-	
 }
 
 
