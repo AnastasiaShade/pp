@@ -1,12 +1,18 @@
 #include "stdafx.h"
 #include "Room.h"
 
-
-CRoom::CRoom()
+CRoom::CRoom(size_t id)
+	:m_id(id)
+	,m_isVacant(true)
 {
 }
 
-
-CRoom::~CRoom()
+void CRoom::SetState(bool state)
 {
+	m_isVacant = state;
+}
+
+bool CRoom::IsVacant()
+{
+	return m_isVacant;
 }
