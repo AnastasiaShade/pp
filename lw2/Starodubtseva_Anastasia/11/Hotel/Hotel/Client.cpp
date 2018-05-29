@@ -2,6 +2,7 @@
 #include "Client.h"
 #include "Room.h"
 #include "Hotel.h"
+#include "Logger.h"
 
 static const size_t SLEEPING_TIME = 2000;
 
@@ -23,8 +24,8 @@ void CClient::LiveInRoom() const
 	ReleaseMutex(CHotel::m_mutex);
 	
 	std::string roomId = room.GetId();
-	std::cout << "The client " + m_id + " moved into the room " + roomId << std::endl;
+	CLogger::PrintMessage("The client " + m_id + " moved into the room " + roomId);
 	Sleep(SLEEPING_TIME);
 	room.SetVacantState(true);
-	std::cout << "The client " + m_id + " released the room " + roomId << std::endl;
+	CLogger::PrintMessage("The client " + m_id + " released the room " + roomId);
 }

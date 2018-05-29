@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Hotel.h"
 #include "ThreadHandler.h"
+#include "Logger.h"
 
 static const size_t ROOM_COUNT = 5;
 static const size_t CLIENT_COUNT = 6;
@@ -76,7 +77,7 @@ DWORD WINAPI CHotel::SettleClient(CONST LPVOID data)
 	CClient * client = static_cast<CClient *>(data);
 	std::string clientId = client->GetId();
 
-	std::cout << "The client " + clientId + " arrived and wants to rent a room" << std::endl;
+	CLogger::PrintMessage("The client " + clientId + " arrived and wants to rent a room");
 
 	while (true)
 	{
@@ -85,7 +86,7 @@ DWORD WINAPI CHotel::SettleClient(CONST LPVOID data)
 			break;
 		}
 		catch (const std::exception &exc) {
-			std::cout << "Client " + clientId + ", " + exc.what() << std::endl;
+			CLogger::PrintMessage("Client " + clientId + ", " + exc.what());
 			WaitForSingleObject(m_semaphore, INFINITE);
 		}
 	}
