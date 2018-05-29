@@ -2,13 +2,14 @@
 class CRoom
 {
 public:
-	CRoom(size_t id);
+	CRoom(std::string id);
 	~CRoom() = default;
 
-	void SetState(bool state);
-	bool IsVacant();
+	void SetVacantState(bool state);
+	bool IsVacant() const;
+	std::string GetId() const;
 
 private:
-	size_t m_id;
+	std::string m_id;
 	bool m_isVacant;
 };
