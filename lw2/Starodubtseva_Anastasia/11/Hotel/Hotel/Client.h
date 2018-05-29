@@ -3,7 +3,7 @@ class CClient
 {
 public:
 	CClient(std::string id);
-	~CClient();
+	~CClient() = default;
 
 	std::string GetId() const;
 	void LiveInRoom() const;

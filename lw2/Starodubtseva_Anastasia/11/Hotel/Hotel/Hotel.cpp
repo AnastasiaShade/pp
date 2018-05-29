@@ -7,6 +7,7 @@ static const size_t CLIENT_COUNT = 6;
 
 HANDLE CHotel::m_semaphore = CreateSemaphore(NULL, ROOM_COUNT, ROOM_COUNT, NULL);
 std::vector<CRoom> CHotel::m_rooms = CreateRooms();
+HANDLE CHotel::m_mutex = CreateMutex(NULL, false, NULL);
 
 CHotel::CHotel()
 	:m_clients(CreateClients())
@@ -16,16 +17,32 @@ CHotel::CHotel()
 CHotel::~CHotel()
 {
 	CloseHandle(m_semaphore);
+	CloseHandle(m_mutex);
 }
 
 void CHotel::Run()
 {
+	CThreadHandler handler;
 
+	for (auto & client : m_clients)
+	{
+		handler.AddThread(&client, &SettleClient);
+	}
+
+	handler.Wait();
+	handler.CloseAll();
 }
 
-CRoom * CHotel::FindFirstVacantRoom()
+CRoom & CHotel::FindFirstVacantRoom()
 {
-
+	for (CRoom & room : m_rooms)
+	{
+		if (room.IsVacant())
+		{
+			return room;
+		}
+	}
+	throw std::exception("there are no vacant rooms! Please, wait!");
 }
 
 std::vector<CRoom> CHotel::CreateRooms()

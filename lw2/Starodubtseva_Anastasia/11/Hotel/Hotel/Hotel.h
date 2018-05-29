@@ -10,7 +10,9 @@ public:
 	~CHotel();
 
 	void Run();
-	static CRoom * FindFirstVacantRoom();
+	static CRoom & FindFirstVacantRoom();
+
+	static HANDLE m_mutex;
 
 private:
 	static std::vector<CRoom> CreateRooms();

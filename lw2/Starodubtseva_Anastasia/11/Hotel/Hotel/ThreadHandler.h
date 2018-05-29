@@ -1,8 +1,15 @@
 #pragma once
-class ThreadHandler
+class CThreadHandler
 {
 public:
-	ThreadHandler();
-	~ThreadHandler();
+	CThreadHandler() = default;
+	~CThreadHandler() = default;
+
+	void AddThread(LPVOID data, LPTHREAD_START_ROUTINE function);
+	void Wait();
+	void CloseAll();
+
+private:
+	std::vector<HANDLE> m_threads;
 };
 
