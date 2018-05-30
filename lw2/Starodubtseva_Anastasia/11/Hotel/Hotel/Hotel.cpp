@@ -8,17 +8,17 @@ static const size_t CLIENT_COUNT = 6;
 
 HANDLE CHotel::m_semaphore = CreateSemaphore(NULL, ROOM_COUNT, ROOM_COUNT, NULL);
 std::vector<CRoom> CHotel::m_rooms = CreateRooms();
-HANDLE CHotel::m_mutex = CreateMutex(NULL, false, NULL);
+HANDLE CHotel::mutex = CreateMutex(NULL, false, NULL);
 
 CHotel::CHotel()
-	:m_clients(CreateClients())
+	: m_clients(CreateClients())
 {
 }
 
 CHotel::~CHotel()
 {
 	CloseHandle(m_semaphore);
-	CloseHandle(m_mutex);
+	CloseHandle(mutex);
 }
 
 void CHotel::Run()

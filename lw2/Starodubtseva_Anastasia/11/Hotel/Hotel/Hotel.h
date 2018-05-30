@@ -12,7 +12,7 @@ public:
 	void Run();
 	static CRoom & FindFirstVacantRoom();
 
-	static HANDLE m_mutex;
+	static HANDLE mutex;
 
 private:
 	static std::vector<CRoom> CreateRooms();

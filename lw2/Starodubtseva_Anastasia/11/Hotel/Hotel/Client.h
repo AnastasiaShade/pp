@@ -3,14 +3,12 @@
 class CClient
 {
 public:
-	CClient(std::string id);
-	~CClient() = default;
+	CClient(const std::string & id);
 
 	std::string GetId() const;
 	void LiveInRoom() const;
 
 private:
 	std::string m_id;
-	static HANDLE m_mutex;
 };
 

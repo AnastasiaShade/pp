@@ -3,9 +3,8 @@
 
 int main()
 {
-	CHotel hotel;
-	hotel.Run();
+    CHotel hotel;
+    hotel.Run();
 
     return 0;
 }
-

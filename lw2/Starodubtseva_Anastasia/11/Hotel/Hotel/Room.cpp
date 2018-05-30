@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "Room.h"
 
-CRoom::CRoom(std::string id)
-	:m_id(id)
-	,m_isVacant(true)
+CRoom::CRoom(const std::string & id)
+	: m_id(id)
+	, m_isVacant(true)
 {
 }
 

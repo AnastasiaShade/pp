@@ -3,8 +3,7 @@
 class CRoom
 {
 public:
-	CRoom(std::string id);
-	~CRoom() = default;
+	CRoom(const std::string & id);
 
 	void SetVacantState(bool state);
 	bool IsVacant() const;

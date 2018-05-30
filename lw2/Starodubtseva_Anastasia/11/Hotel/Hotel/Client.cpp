@@ -6,8 +6,8 @@
 
 static const size_t SLEEPING_TIME = 2000;
 
-CClient::CClient(std::string id)
-	:m_id(id)
+CClient::CClient(const std::string & id)
+	: m_id(id)
 {
 }
 
@@ -18,10 +18,10 @@ std::string CClient::GetId() const
 
 void CClient::LiveInRoom() const
 {
-	WaitForSingleObject(CHotel::m_mutex, INFINITE);
+	WaitForSingleObject(CHotel::mutex, INFINITE);
 	CRoom & room = CHotel::FindFirstVacantRoom();
 	room.SetVacantState(false);
-	ReleaseMutex(CHotel::m_mutex);
+	ReleaseMutex(CHotel::mutex);
 	
 	std::string roomId = room.GetId();
 	CLogger::PrintMessage("The client " + m_id + " moved into the room " + roomId);
